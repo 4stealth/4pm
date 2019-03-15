@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# 4stealth Paket Manager
+
+PS3='4pm install paket : '
+options=("acl" "exit")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "acl")
+            cd /tmp/
+            wget http://repo.blackhat.web.id/base/a/acl/acl-2.2.52.4sth
+            echo "Download Paket acl...."
+            tar -xf acl-2.2.52.4sth
+            cd acl
+            echo "Installing Paket acl...."
+            make
+            make install
+            rm -rf acl acl-2.2.52.4sth
+            echo "Selesai...."
+            ;;
+        "exit")
+            break
+            ;;
+        *) echo "Paket tidak ditemukan... $REPLY";;
+    esac
+done
